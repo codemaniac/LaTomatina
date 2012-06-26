@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:logic="com.codemaniac.latomatina.logic.*"
+			   initialize="application_initializeHandler(event)" 
+			   frameRate="45" width="800" height="600">
+		
+	<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		@namespace mx "library://ns.adobe.com/flex/mx";
+		@namespace logic "com.codemaniac.latomatina.logic.*";
+		
+		mx|Text {
+			color:#CFB52B;
+			font-family:"Times New Roman";
+			font-size:22;
+			font-weight:bold;
+		}
+	</fx:Style>
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+
+			[Bindable]
+			public var hitCount:Number = 0;
+			
+			[Bindable]
+			public var time:Number = 0;
+			
+			protected function application_initializeHandler(event:FlexEvent):void
+			{
+				scoreBoardBox.visible = false;
+				pane.rawChildren.addChild(laTomatina);
+			}			
+
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>		
+		<logic:LaTomatina id="laTomatina" />
+	</fx:Declarations>
+	
+	<mx:Panel id="pane" width="800" height="600" />
+	<mx:HBox id="scoreBoardBox" width="800" height="45" backgroundColor="#ffffff" alpha="0.8" verticalAlign="middle">
+		<mx:Spacer width="50" />
+		<mx:Image source="assets/Tomato-small.png"/>
+		<mx:Text text="{hitCount}" />
+		<mx:Spacer width="500" />
+		<mx:Image source="assets/clock.png" />
+		<mx:Text text="{time}" />
+	</mx:HBox>	
+	
+</s:Application>
